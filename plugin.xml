@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+  <extension point="org.eclipse.ui.startup">
+    <startup class="org.aws.designer.eclipse.common.AWSStartup"/>
+  </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+      <category
+            id="com.actionsoft.aws.developer.commands.category"
+            name="Sample Category">
+      </category>
+      <command
+            categoryId="com.actionsoft.aws.developer.commands.category"
+            name="Sample Command"
+            id="com.actionsoft.aws.developer.commands.sampleCommand">
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.handlers">
+      <handler
+            class="com.actionsoft.aws.developer.handlers.LinkAppHandler"
+            commandId="com.actionsoft.aws.developer.commands.sampleCommand">
+      </handler>
+   </extension>
+   <extension
+         point="org.eclipse.ui.bindings">
+      <key
+            commandId="com.actionsoft.aws.developer.commands.sampleCommand"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+            contextId="org.eclipse.ui.contexts.window"
+            sequence="M1+6">
+      </key>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            locationURI="menu:org.eclipse.ui.main.menu?after=additions">
+         <menu
+               id="com.actionsoft.aws.developer.menus.sampleMenu"
+               label="Sample Menu"
+               mnemonic="M">
+            <command
+                  commandId="com.actionsoft.aws.developer.commands.sampleCommand"
+                  id="com.actionsoft.aws.developer.menus.sampleCommand"
+                  mnemonic="S">
+            </command>
+         </menu>
+      </menuContribution>
+      <menuContribution
+            locationURI="toolbar:org.eclipse.ui.main.toolbar?after=additions">
+         <toolbar
+               id="com.actionsoft.aws.developer.toolbars.sampleToolbar">
+            <command
+                  id="com.actionsoft.aws.developer.toolbars.sampleCommand"
+                  commandId="com.actionsoft.aws.developer.commands.sampleCommand"
+                  icon="icons/sample.png"
+                  tooltip="Say hello world">
+            </command>
+         </toolbar>
+      </menuContribution>
+   </extension>
+
+</plugin>

@@ -1,0 +1,14 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: AWSDeveloper
+Bundle-SymbolicName: com.actionsoft.aws.developer;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: awsdeveloper.Activator
+Require-Bundle: org.eclipse.ui,
+  org.eclipse.core.runtime
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Automatic-Module-Name: com.actionsoft.aws.developer
+Bundle-ActivationPolicy: lazy
+Import-Package: org.eclipse.core.resources,
+ org.eclipse.jdt.core,
+ org.eclipse.jdt.internal.core
