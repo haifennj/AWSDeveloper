@@ -27,6 +27,8 @@ import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.commands.ICommandService;
 
+import com.actionsoft.aws.developer.PluginUtil;
+
 public class AWSStartup implements org.eclipse.ui.IStartup {
 	public void earlyStartup() {
 		IWorkbench workbench = PlatformUI.getWorkbench();
@@ -157,39 +159,17 @@ public class AWSStartup implements org.eclipse.ui.IStartup {
 						if (!userLibrary.isSystemLibrary()) {
 							File awsRoot = null;
 							IPath refProjectPrefix = null;
-							IClasspathEntry[] entries = userLibrary.getEntries();
-							IClasspathEntry[] arrayOfIClasspathEntry1;
-							int m = (arrayOfIClasspathEntry1 = entries).length;
-							for (int k = 0; k < m; k++) {
-								IClasspathEntry entrie = arrayOfIClasspathEntry1[k];
-								IPath path = entrie.getPath().makeAbsolute();
-								if (!path.toFile().exists()) {
-									IWorkspaceRoot wsroot = ResourcesPlugin.getWorkspace().getRoot();
-									IProject refrenceProject = wsroot.getProject(path.segment(0));
-									if (refrenceProject != null) {
-										refProjectPrefix = refrenceProject.getLocation().removeLastSegments(1).removeTrailingSeparator();
-										IPath tmpPath = new Path(refProjectPrefix.toPortableString() + path.toPortableString());
-										path = tmpPath;
-									}
+							if (AWS_LIBRARY_NAME.equals(libName)) {
+								IProject releaseProject = PluginUtil.findAWSReleaseProject();
+								refProjectPrefix = releaseProject.getLocation().removeLastSegments(1).removeTrailingSeparator();
+								IPath path = releaseProject.getFullPath();
+								IPath tmpPath = new Path(refProjectPrefix.toPortableString() + path.toPortableString());
+								awsRoot = new File(tmpPath.toPortableString()).getAbsoluteFile();
+								if (awsRoot != null) {
+									updateAWSLib(project, refProjectPrefix, libName, awsRoot);
 								}
-
-								if ((path.toPortableString().contains("/bin/lib")) || (path.toPortableString().contains("/bin/jdbc"))) {
-									File dir = path.toFile().getParentFile();
-									while (!dir.getName().equals("bin")) {
-										dir = dir.getParentFile();
-									}
-									if (dir.getName().equals("bin")) {
-										File system = new File(dir, "system.xml");
-										File bootstrap_jar = new File(dir, "bootstrap.jar");
-										if ((system.exists()) || (bootstrap_jar.exists())) {
-											awsRoot = dir.getParentFile();
-											break;
-										}
-									}
-								}
+								break;
 							}
-							if (awsRoot != null)
-								updateAWSLib(project, refProjectPrefix, libName, awsRoot);
 						}
 					}
 				}
@@ -197,7 +177,6 @@ public class AWSStartup implements org.eclipse.ui.IStartup {
 				e.printStackTrace();
 			}
 		}
-
 
 		private void updateAWSLib(IProject project, IPath refProjectPrefix, String libName, File directory) throws IOException {
 			File libDir = new File(directory + "/bin/lib");
