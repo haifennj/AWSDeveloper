@@ -5,6 +5,7 @@ import java.io.IOException;
 
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.dialogs.MessageDialog;
@@ -58,6 +59,10 @@ public class LinkAppAction implements IObjectActionDelegate {
 		if (this.currentSelection instanceof ITreeSelection) {
 			File file = this.selectResourcelocation.toFile();
 			createLink(awsRoot, file);
+			try {
+				releaseProject.refreshLocal(IResource.DEPTH_INFINITE, null);
+			} catch (CoreException e) {
+			}
 		}
 	}
 
