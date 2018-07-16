@@ -5,7 +5,7 @@
 
 ## 使用方法
 
-下载[AWSDeveloper_1.0.0.201807151540.jar](https://github.com/haiifenng/AWSDeveloper/releases/download/1.0.0/AWSDeveloper_1.0.0.201807151540.jar)文件。
+下载[AWSDeveloper_1.0.0.jar](https://github.com/haiifenng/AWSDeveloper/releases/download/1.0.0/AWSDeveloper_1.0.0.jar)文件。
 
 部署位置：
 * Windows：eclipse/dropins
