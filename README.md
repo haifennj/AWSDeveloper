@@ -5,11 +5,11 @@
 
 ## 使用方法
 
-下载[AWSDeveloper_1.0.1.jar](https://github.com/haiifenng/AWSDeveloper/releases/download/1.0.1/AWSDeveloper_1.0.1.jar)文件。
+下载 [AWSDeveloper_1.0.1.jar](https://github.com/haiifenng/AWSDeveloper/releases/download/1.0.1/AWSDeveloper_1.0.1.jar) 文件。
 
 部署位置：
 * Windows：eclipse/dropins
-* macOS：应用程序-Eclipse，右键-显示包内容，Contents/Eclipse/dropins
+* macOS：`应用程序`-`Eclipse`点击右键，选择`显示包内容`，Contents/Eclipse/dropins
 
 重启Eclipse。
 
@@ -29,8 +29,9 @@
 AWS资源使用新的管理方式后，App的资源代码使用独立的Git库管理，和release分开了，插件提供了两种菜单：
 * `Link App` ：仅仅使用软连接的形式部署到release资源中，方便使用该App。如果已经软连接，则会显示Already Linked。
 
-|![link-app.png](./img/link-app.png) | ![link-app.png](./img/already-linked.png) |
-| -- | -- |
+|              未链接App              |                已经链接App                |
+| :---------------------------------: | :---------------------------------------: |
+| ![link-app.png](./img/link-app.png) | ![link-app.png](./img/already-linked.png) |
 
 **限制条件：**
 
